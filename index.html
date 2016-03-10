@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion de contacts</title>
+
+    <!-- Mettre en commentaire la 1ere balise meta pour pouvoir ouvrir le fichier dans Chrome sans passer par le terminal -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"> -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+    <!-- jQuery Mobile CSS -->
+    <link rel="stylesheet" type="text/css" href="views/js/jQuery/jquery.mobile-1.4.5.min.css" />
+
+    <!-- jQuery Mobile -->
+    <script src="views/js/jQuery/jquery-1.11.1.min.js"></script>
+    <!-- Chrome error fix // DELETE BEFORE PROD -->
+    <script>$(document).bind('mobileinit',function(){$.mobile.pushStateEnabled = false;});</script>
+    <script src="views/js/jQuery/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+
+<!-- ////////////////////////////////////////////////////
+////////////// Page 1 : Liste des contacts //////////////
+///////////////////////////////////////////////////////// -->
+
+<div data-role="page" id="accueil" data-theme="b">
+
+    <!-- Header -->
+    <header data-role="header">
+        <h1>Contacts</h1>
+        <a href="#ajouter" class="ui-btn ui-btn-right ui-icon-plus ui-btn-icon-left">Ajouter</a>
+    </header>
+
+    <!-- Main -->
+    <div role="main" class="ui-content" id="mainPage1">
+        <!-- Un message d'erreur apparaît si aucun contact n'est enregistré : "Aucun contact enregistré" -->
+        <p>Aucun contact enregistré</p>
+
+        <!-- Lister et filtrer les contacts -->
+        <ul data-role="listview" data-filter="true" data-autodividers="true" data-filter-placeholder="Filtrer..." data-inset="true" data-theme="a">
+
+            <li data-theme="b">
+                <a href="#detail">
+                    <img src="views/img/avatar.png">
+                    <h2>Gabriel Block</h2>
+                    <p>02 51 72 07 34</p>
+                </a>
+            </li>
+
+            <li data-theme="b">
+                <a href="#detail2">
+                    <img src="views/img/avatar.png">
+                    <h2>Hélène Gaillard</h2>
+                    <p>02 51 70 14 34</p>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+    <!-- Footer -->
+    <footer data-role="footer" data-position="fixed">
+        <h1>IMIE</h1>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#">A-Z</a></li>
+                <li><a href="#">Z-A</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</div>
+
+
+<!-- ////////////////////////////////////////////////////
+//////// Page 2 : Ajouter et modifier un contact ////////
+///////////////////////////////////////////////////////// -->
+
+<div data-role="page" id="ajouter" data-transition="slide" data-theme="b">
+
+    <!-- Header -->
+    <header data-role="header">
+        <h1>Ajouter</h1>
+        <a href="#" class="ui-btn ui-btn-right ui-icon-delete ui-btn-icon-notext ui-corner-all" data-rel="back">No text</a>
+    </header>
+
+    <!-- Formulaire -->
+    <div role="main" class="ui-content" id="mainPage2">
+        <form action="">
+            <label for="lastname">Nom : </label>
+            <input type="text" />
+
+            <label for="firstname">Prénom : </label>
+            <input type="text" />
+
+            <label for="tel">Tél. : </label>
+            <input type="tel" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$" />
+
+            <label for="email">Email : </label>
+            <input type="email" />
+
+            <label for="birthdate">Date de naissance : </label>
+            <input type="date" />
+
+            <label for="photo">Photo : </label>
+            <div data-role="controlgroup" >
+                <a href="#" class="ui-btn ui-btn-inline">Ajouter</a>
+            </div>
+
+            <button type="submit" class="ui-btn ui-corner-all ui-btn-a">Valider</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer data-role="footer" data-theme="b" data-position="fixed"></footer>
+
+</div>
+
+
+<!-- ////////////////////////////////////////////////////
+///////////// Page 3 : Détail d'un contact /////////////
+///////////////////////////////////////////////////////// -->
+
+<div data-role="page" id="detail" data-transition="slide" data-theme="b">
+
+    <!-- Header -->
+    <header data-role="header">
+        <h1>Contacts</h1>
+        <a href="#" class="ui-btn ui-icon-back ui-btn-icon-left" data-rel="back">Retour</a>
+    </header>
+
+    <!-- Détail d'un contact -->
+    <div role="main" class="ui-content" id="detail1">
+        <img src="views/img/avatar.png">
+        <h2>Gabriel Block</h2>
+        <p><a href="#">02 51 72 07 34</a></p>
+        <a href="#">gabriel.block@imie.fr</a>
+        <p>12/10/1982</p>
+    </div>
+
+    <!-- Footer -->
+    <footer data-role="footer" data-position="fixed">
+        <a href="#actionsMenu" data-rel="popup" data-transition="slideup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-bars ui-btn-icon-right ui-btn-b">Actions...</a>
+        <div data-role="popup" id="actionsMenu" data-theme="b">
+                    <ul data-role="listview" data-inset="true" style="min-width:210px;">
+                    <li data-role="list-divider">Actions...</li>
+                    <li>
+            <a href="#" class="ui-btn ui-icon-edit ui-btn-icon-right">Modifier</a>
+        </li>
+                    <li>
+            <a href="#" class="ui-btn ui-icon-delete ui-btn-icon-right">Supprimer</a>
+        </li>
+                    </ul>
+        </div>
+    </footer>
+
+</div>
+
+
+<!-- ////////////////////////////////////////////////////
+//////////////////////// Scripts ////////////////////////
+///////////////////////////////////////////////////////// -->
+
+<!-- Event Emitter -->
+<!-- <script src="www/libs/EventEmitter.js"></script> -->
+
+<!-- View -->
+<!-- <script src="www/models/ContactView.js"></script> -->
+
+<!-- Model -->
+<!-- <script src="www/models/ContactModel.js"></script> -->
+
+<!-- Controller -->
+<!-- <script src="www/controllers/ContactController.js"></script> -->
+
+<!-- <script type="text/javascript" src="cordova.js"></script> -->
+<!-- <script type="text/javascript" src="js/app.js"></script> -->
+
+</body>
+</html>
